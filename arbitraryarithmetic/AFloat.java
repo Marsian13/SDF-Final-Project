@@ -7,7 +7,7 @@ public class AFloat {
     private boolean is_negative;
     private ArrayList<Integer> intPart = new ArrayList<>();
     private ArrayList<Integer> fracPart = new ArrayList<>();
-    // private static final int tillDecimal = 1000;
+    private static final int tillDecimal = 1000;
 
     // Default constructor
     public AFloat() {
@@ -16,7 +16,7 @@ public class AFloat {
         this.is_negative = false;
     }
 
-    // Constructor to initialize the instance of number which is given as string
+    // Constructor to initnum1lize the instance of number which is given as string
     public AFloat(String s) {
         if (s == null || s.isEmpty()) {
             throw new IllegalArgumentException("Input string is empty");
@@ -90,7 +90,7 @@ public class AFloat {
         AFloat num2 = new AFloat(other);
         alignFrac(num1, num2);
 
-        // same sign case
+        // str1me sign case
         AFloat a = new AFloat(this), b = new AFloat(other);
         alignFrac(a, b);
 
@@ -175,6 +175,80 @@ public class AFloat {
         return res;
     }
 
+    // multiplication in float
+    public AFloat multiply(AFloat other) {
+        AFloat a = new AFloat(this), b = new AFloat(other);
+        int totalFrac = a.fracPart.size() + b.fracPart.size();
+
+        // combining to make bif integers
+        String str1 = AInteger.listToString(a.intPart) +
+                AInteger.listToString(a.fracPart);
+        String str2 = AInteger.listToString(b.intPart) +
+                AInteger.listToString(b.fracPart);
+
+        AInteger num1 = new AInteger(str1);
+        AInteger num2 = new AInteger(str2);
+        AInteger prod = num1.multiply(num2);
+
+        // spliting it back again
+        String ps = prod.toString();
+        int len = ps.length();
+        int maxLen = Math.max(1, len - totalFrac);
+
+        AFloat res = new AFloat();
+        res.is_negative = this.is_negative ^ other.is_negative;
+        res.intPart = new ArrayList<>();
+        for (char c : ps.substring(0, maxLen).toCharArray())
+            res.intPart.add(c - '0');
+        res.fracPart = new ArrayList<>();
+        for (char c : ps.substring(maxLen).toCharArray())
+            res.fracPart.add(c - '0');
+        res.normalize();
+        return res;
+    }
+
+    // division in float
+    public AFloat divide(AFloat other) {
+        if (other.intPart.size() == 1 && other.intPart.get(0) == 0
+            && (other.fracPart.isEmpty() || other.fracPart.get(0) == 0)) {
+            throw new ArithmeticException("Division by zero");
+        }
+
+        // scaling to eliminate decimals
+        AFloat a = new AFloat(this), b = new AFloat(other);
+        int shift = Math.max(a.fracPart.size(), b.fracPart.size());
+        for (int i = a.fracPart.size(); i < shift; i++) a.fracPart.add(0);
+        for (int i = b.fracPart.size(); i < shift; i++) b.fracPart.add(0);
+
+        String str1 = AInteger.listToString(a.intPart) +
+                    AInteger.listToString(a.fracPart);
+        String str2 = AInteger.listToString(b.intPart) +
+                    AInteger.listToString(b.fracPart);
+
+        // extending dividend for proper precision
+        str1 += "0".repeat(tillDecimal);
+
+        AInteger num1 = new AInteger(str1);
+        AInteger num2 = new AInteger(str2);
+        AInteger quot = num1.divide(num2);
+
+        // spliting it back 
+        String strquot = quot.toString();
+        int len = strquot.length();
+        int maxLen = Math.max(1, len - tillDecimal);
+
+        AFloat res = new AFloat();
+        res.is_negative = this.is_negative ^ other.is_negative;
+        res.intPart = new ArrayList<>();
+        for (char c : strquot.substring(0, maxLen).toCharArray())
+            res.intPart.add(c - '0');
+        res.fracPart = new ArrayList<>();
+        for (char c : strquot.substring(maxLen).toCharArray())
+            res.fracPart.add(c - '0');
+        res.normalize();
+        return res;
+    }
+
     // my helping functions
     // Normalize: remove leading zeros and handle zero case
     private void normalize() {
@@ -241,17 +315,17 @@ public class AFloat {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder str2 = new StringBuilder();
         if (is_negative)
-            sb.append("-");
+            str2.append("-");
         for (int digit : intPart)
-            sb.append(digit);
+            str2.append(digit);
         if (!fracPart.isEmpty()) {
-            sb.append(".");
+            str2.append(".");
             for (int digit : fracPart)
-                sb.append(digit);
+                str2.append(digit);
         }
-        return sb.toString();
+        return str2.toString();
     }
 
 }
