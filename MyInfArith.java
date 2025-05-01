@@ -40,27 +40,27 @@ public class MyInfArith {
             }
             System.out.println(result);
         }else if (typeOfNumbers.equals("float")){
-            // AFloat a = new AFloat(number1);
-            // AFloat b = new AFloat(number2);
-            // AFloat result;
-            // switch (operatationToDO) {
-            //     case "add":
-            //         result = a.add(b);
-            //         break;
-            //     case "sub":
-            //         result = a.subtract(b);
-            //         break;
-            //     case "mul":
-            //         result = a.multiply(b);
-            //         break;
-            //     case "div":
-            //         result = a.divide(b);
-            //         break;
-            //     default:
-            //         System.out.println("Invalid operation");
-            //         return;
-            // }
-            // System.out.println(result);
+            AFloat a = new AFloat(number1);
+            AFloat b = new AFloat(number2);
+            AFloat result;
+            switch (operatationToDO) {
+                case "add":
+                    result = a.add(b);
+                    break;
+                case "sub":
+                    result = a.subtract(b);
+                    break;
+                case "mul":
+                    result = a.multiply(b);
+                    break;
+                case "div":
+                    result = a.divide(b);
+                    break;
+                default:
+                    System.out.println("Invalid operation");
+                    return;
+            }
+            System.out.println(result);
         }else {
             System.out.println("Invalid type : type of number should be 'int' or 'float' ");
         }
