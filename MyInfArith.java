@@ -12,7 +12,7 @@ public class MyInfArith {
         // }
 
         String typeOfNumbers = args[0];
-        String operatationToDO = args[1];
+        String operationToDo = args[1];
         String number1 = args[2];
         String number2 = args[3];
         // System.out.println(args[0]);
@@ -21,7 +21,7 @@ public class MyInfArith {
             AInteger a = new AInteger(number1);
             AInteger b = new AInteger(number2);
             AInteger result;
-            switch (operatationToDO) {
+            switch (operationToDo) {
                 case "add":
                     result = a.add(b);
                     break;
@@ -43,7 +43,7 @@ public class MyInfArith {
             AFloat a = new AFloat(number1);
             AFloat b = new AFloat(number2);
             AFloat result;
-            switch (operatationToDO) {
+            switch (operationToDo) {
                 case "add":
                     result = a.add(b);
                     break;

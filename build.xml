@@ -1,0 +1,30 @@
+<project name="MyInfArithProject" default="run" basedir=".">
+
+    <property name="src.dir" value="." />
+    <property name="build.dir" value="compiled" />
+    <property name="main.class" value="MyInfArith" />
+
+    <target name="clean">
+        <delete dir="${build.dir}" />
+    </target>
+
+    <target name="compile" depends="clean">
+        <mkdir dir="${build.dir}" />
+        <javac srcdir="." destdir="${build.dir}" includeantruntime="false">
+        </javac>
+    </target>
+
+    <target name="run" depends="compile">
+        <exec executable="python3" failonerror="true">
+            <arg value="coderunner.py"></arg>
+        </exec>
+    </target>
+
+    <target name="jar" depends="compile">
+        <jar destfile="arbitraryarithmetic/aarithmetic.jar" basedir="${build.dir}">
+            <manifest>
+                <attribute name="Main-class" value="${main.class}"/>
+            </manifest>
+        </jar>
+    </target>
+</project>

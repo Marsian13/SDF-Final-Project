@@ -80,7 +80,13 @@ public class AInteger {
                 result.number_in_integer = subtractNumbers(other.number_in_integer, this.number_in_integer);
                 result.is_negative = true;
             } else {
+                boolean firstSmaller = isSmaller(this.number_in_integer, other.number_in_integer);
                 result.number_in_integer = subtractNumbers(this.number_in_integer, other.number_in_integer);
+                if (this.is_negative) {
+                    result.is_negative = !firstSmaller;
+                } else {
+                    result.is_negative = firstSmaller;
+                }
             }
         }
 
