@@ -92,6 +92,81 @@ public class AInteger {
         return result;
     }
 
+    // multiplication logic so that i can handle signs and all properly
+    public AInteger multiply(AInteger other) {
+        AInteger result = new AInteger(); // Declare result at the beginning
+        if (this.is_negative == other.is_negative) {
+            result.number_in_integer = multiplyNumbers(this.number_in_integer, other.number_in_integer);
+        } else {
+            result.number_in_integer = multiplyNumbers(this.number_in_integer, other.number_in_integer);
+            result.is_negative = true;
+        }
+        result.normalize();
+        return result;
+    }
+
+    // division logic so that i can handle signs and all properly
+    public AInteger divide(AInteger other) {
+        AInteger result = new AInteger(); // Declare result at the beginning
+
+        if (other.number_in_integer.size() == 1 && other.number_in_integer.get(0) == 0) {
+            throw new ArithmeticException("Division by zero");
+        }
+        result.number_in_integer = divideNumbers(this.number_in_integer, other.number_in_integer);
+        if (this.is_negative != other.is_negative && !isSmaller(this.number_in_integer, other.number_in_integer)) {
+            result.is_negative = true;
+        }
+        result.normalize();
+        return result;
+    }
+
+    // main multiplication
+    private ArrayList<Integer> multiplyNumbers(List<Integer> l1, List<Integer> l2) {
+        int n = l1.size(), m = l2.size();
+        int[] result = new int[n + m];
+
+        for (int i = n - 1; i >= 0; i--) {
+            int carry = 0;
+            for (int j = m - 1; j >= 0; j--) {
+                int product = l1.get(i) * l2.get(j) + result[i + j + 1] + carry;
+                result[i + j + 1] = product % 10;
+                carry = product / 10;
+            }
+            result[i] += carry;
+        }
+
+        ArrayList<Integer> resList = new ArrayList<>();
+        for (int num : result)
+            resList.add(num);
+        resList = stripLeadingZeros(resList);
+
+        return resList;
+    }
+
+    // main division
+    private ArrayList<Integer> divideNumbers(List<Integer> dividend, List<Integer> divisor) {
+        ArrayList<Integer> quotient = new ArrayList<>();
+        ArrayList<Integer> temp = new ArrayList<>();
+
+        for (int digit : dividend) {
+            temp.add(digit);
+            temp = stripLeadingZeros(temp);
+
+            int count = 0;
+            while (!isSmaller(temp, divisor)) {
+                temp = subtractNumbers(temp, divisor);
+                count++;
+            }
+            quotient.add(count);
+        }
+
+        quotient = stripLeadingZeros(quotient);
+        if (quotient.isEmpty()) {
+            quotient.add(0);
+        }
+        return quotient;
+    }
+
     // main addition
     public static ArrayList<Integer> addNumbers(List<Integer> a, List<Integer> b) {
         ArrayList<Integer> l1 = new ArrayList<>(a); // Copy to avoid modifying original
@@ -146,9 +221,15 @@ public class AInteger {
         return ans;
     }
 
-
     // my helper functions
     // converting my list of integers back to string
+    public static List<Integer> stringToList(String s) {
+        List<Integer> list = new ArrayList<>();
+        for (char c : s.toCharArray())
+            list.add(Character.getNumericValue(c));
+        return list;
+    }
+
     public static String listToString(List<Integer> list) {
         StringBuilder sb = new StringBuilder();
         for (int digit : list)
