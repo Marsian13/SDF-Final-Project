@@ -1,0 +1,62 @@
+@startuml
+' Skin parameters for a colorful and vibrant design
+skinparam monochrome false
+skinparam classAttributeIconSize 0
+skinparam padding 10
+skinparam classFontSize 12
+skinparam classBackgroundColor LightGreen
+skinparam classBorderColor DarkGreen
+skinparam classArrowColor RoyalBlue
+skinparam classFontColor Black
+skinparam attributeFontColor Red
+skinparam methodBackgroundColor LightYellow
+skinparam methodBorderColor Orange
+skinparam stereotypeFontColor DarkBlue
+skinparam shadowing true
+
+' AInteger class
+class AInteger {
+  +is_negative: boolean
+  +number_in_integer: ArrayList<Integer>
+  --
+  +AInteger()
+  +AInteger(String)
+  +AInteger(AInteger)
+  +{static} parse(String): AInteger
+  +add(AInteger): AInteger
+  +subtract(AInteger): AInteger
+  +multiply(AInteger): AInteger
+  +divide(AInteger): AInteger
+  -normalize(): void
+  +toString(): String
+}
+
+' AFloat class
+class AFloat {
+  +is_negative: boolean
+  +intPart: ArrayList<Integer>
+  +fracPart: ArrayList<Integer>
+  -{static} MAX_FRAC: int = 1000
+  --
+  +AFloat()
+  +AFloat(String)
+  +AFloat(AFloat)
+  +{static} parse(String): AFloat
+  +add(AFloat): AFloat
+  +subtract(AFloat): AFloat
+  +multiply(AFloat): AFloat
+  +divide(AFloat): AFloat
+  -normalize(): void
+  +toString(): String
+}
+
+' MyInfArith class
+class MyInfArith {
+  +{static} main(String[]): void
+}
+
+' Relationships
+MyInfArith .> AInteger : uses
+MyInfArith .> AFloat : uses
+AFloat .> AInteger : uses
+@enduml

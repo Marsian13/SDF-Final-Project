@@ -16,14 +16,17 @@
 
     <target name="run" depends="compile">
         <exec executable="python3" failonerror="true">
-            <arg value="coderunner.py"></arg>
+            <arg value="int" />
+            <arg value="add" />
+            <arg value="123" />
+            <arg value="78" />
         </exec>
     </target>
 
     <target name="jar" depends="compile">
         <jar destfile="arbitraryarithmetic/aarithmetic.jar" basedir="${build.dir}">
             <manifest>
-                <attribute name="Main-class" value="${main.class}"/>
+                <attribute name="Main-class" value="${main.class}" />
             </manifest>
         </jar>
     </target>
