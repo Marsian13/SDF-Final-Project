@@ -15,18 +15,18 @@
     </target>
 
     <target name="run" depends="compile">
-        <exec executable="python3" failonerror="true">
-            <arg value="int" />
-            <arg value="add" />
-            <arg value="123" />
-            <arg value="78" />
-        </exec>
+        <java classname="${main.class}" fork="true" classpath="${build.dir}">
+            <arg value="float" />
+            <arg value="div" />
+            <arg value="5.5" />
+            <arg value="2" />
+        </java>
     </target>
 
     <target name="jar" depends="compile">
         <jar destfile="arbitraryarithmetic/aarithmetic.jar" basedir="${build.dir}">
             <manifest>
-                <attribute name="Main-class" value="${main.class}" />
+                <attribute name="Main-Class" value="${main.class}" />
             </manifest>
         </jar>
     </target>

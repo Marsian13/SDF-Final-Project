@@ -7,10 +7,7 @@ public class MyInfArith {
                     "Please enter input in format of <int/float> <add/sub/mul/div> <First operand> <Second operand>");
             return;
         }
-        // if (args[0] != "int" || args[0] != "float"){
-        // System.out.println("");
-        // }
-
+        
         String typeOfNumbers = args[0];
         String operationToDo = args[1];
         String number1 = args[2];
