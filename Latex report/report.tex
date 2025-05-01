@@ -18,7 +18,7 @@
 \maketitle
     
 \section{Introduction}
-This report documents the development of an arbitrary-precision arithmetic library in Java for the Software Development Fundamentals (SDF) Project (CS1023). The library supports operations on integers (\texttt{AInteger}) and floating-point numbers (\texttt{AFloat}), handling numbers of any size with up to 1000 digits of precision for floating-point division. It includes a command-line interface via \texttt{MyInfArith}.
+This report documents the development of an arbitrary-precision arithmetic library in Java for the Software Development Fundamentals (SDF) Project (CS1023). The library supports operations on integers (\texttt{AInteger}) and floating-point numbers (\texttt{AFloat}), handling numbers of any size with up to 30 digits of precision for floating-point division. It includes a command-line interface via \texttt{MyInfArith}.
 
 \section{Structure of my Directory}
 \subsection{Class Structure}
@@ -49,7 +49,7 @@ The arbitrary-precision arithmetic library uses lists to implement addition, sub
     \item \textbf{Addition}: Did addition by using the digit-by-digit method with checking carry in each step and saved the result in the list itself later converted it to string.
     \item \textbf{Subtraction}:Did subtraction by using the digit-by-digit method with checking borrow in each step and saved the result in the list itself later converted it to string.
     \item \textbf{Multiplication}: Did multiplication using a list and saved the result in a list itself later converted it to a string.
-    \item \textbf{Division}: \texttt{AFloat.divide} pads the quotient to ensure 1000 digits of precision, addressing issues like \texttt{StringIndexOutOfBoundsException} and normal division by using the subtraction method.
+    \item \textbf{Division}: \texttt{AFloat.divide} pads the quotient to ensure 30 digits of precision, addressing issues like \texttt{StringIndexOutOfBoundsException} and normal division by using the subtraction method.
 \end{itemize}
 
 \section{How to Use the Library}
@@ -84,7 +84,7 @@ Import the JAR file into your project and use the \texttt{AInteger} and \texttt{
 
 \section{Limitations}
 \begin{itemize}
-    \item Floating-point division assumes \texttt{MAX\_FRAC = 1000}; higher precision requires adjusting this constant.
+    \item Floating-point division assumes \texttt{MAX\_FRAC = 30}; higher precision requires adjusting this constant.
     \item Performance may degrade with extremely large numbers due to list-based storage.
     \item No support for advanced mathematical operations (e.g., square root, exponentiation).
 \end{itemize}
