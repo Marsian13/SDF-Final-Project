@@ -1,22 +1,7 @@
-# Use the eclipse-temurin base image with JDK 17
-FROM eclipse-temurin:17-jdk
-
-# Set the working directory inside the container
-WORKDIR /app
+FROM eclipse-temurin
 
 # Copy the project files into the container
-COPY arbitraryarithmetic/ /app/arbitraryarithmetic/
-COPY MyInfArith.java /app/MyInfArith.java
-COPY build.xml /app/
-COPY coderunner.py /app/
+COPY arbitraryarithmetic/aarithmetic.jar app/my.jar
 
-# Install Ant (required for building the project)
-RUN apt-get update && apt-get install -y ant
-
-# Build the project using Ant
-RUN ant jar
-
-# Define the entry point to run the MyInfArith program
-# Example: java -jar dist/ArbitraryArithmetic.jar float div 5.5 2
-ENTRYPOINT ["java", "-jar", "/app/arbitraryarithmetic/aarithmetic.jar"] 
+ENTRYPOINT ["java", "-jar", "app/my.jar"] 
 CMD ["int", "add", "1", "1"]

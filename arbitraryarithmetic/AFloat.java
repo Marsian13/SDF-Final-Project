@@ -7,7 +7,7 @@ public class AFloat {
     private boolean is_negative;
     private ArrayList<Integer> intPart = new ArrayList<>();
     private ArrayList<Integer> fracPart = new ArrayList<>();
-    private static final int tillDecimal = 1000;
+    private static final int tillDecimal = 30;
 
     // Default constructor
     public AFloat() {
@@ -245,7 +245,8 @@ public class AFloat {
         res.fracPart = new ArrayList<>();
         for (char c : strquot.substring(maxLen).toCharArray())
             res.fracPart.add(c - '0');
-        res.normalize();
+        res.intPart=stripLeadingZeros(res.intPart);
+        res.fracPart = stripTrailingZeros(res.fracPart);
         return res;
     }
 

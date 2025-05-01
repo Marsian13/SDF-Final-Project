@@ -122,7 +122,7 @@ public class AInteger {
         if (this.is_negative != other.is_negative && !isSmaller(this.number_in_integer, other.number_in_integer)) {
             result.is_negative = true;
         }
-        result.normalize();
+        result.number_in_integer=stripLeadingZeros(result.number_in_integer);
         return result;
     }
 
@@ -151,27 +151,31 @@ public class AInteger {
 
     // main division
     private ArrayList<Integer> divideNumbers(List<Integer> dividend, List<Integer> divisor) {
+    
         ArrayList<Integer> quotient = new ArrayList<>();
         ArrayList<Integer> temp = new ArrayList<>();
-
+    
         for (int digit : dividend) {
             temp.add(digit);
             temp = stripLeadingZeros(temp);
-
+    
             int count = 0;
             while (!isSmaller(temp, divisor)) {
                 temp = subtractNumbers(temp, divisor);
                 count++;
             }
-            quotient.add(count);
+            // System.out.println(quotient);
+            quotient.add(count); 
         }
-
         quotient = stripLeadingZeros(quotient);
+        // System.out.println(quotient);
         if (quotient.isEmpty()) {
             quotient.add(0);
         }
+    
         return quotient;
     }
+    
 
     // main addition
     public static ArrayList<Integer> addNumbers(List<Integer> a, List<Integer> b) {
