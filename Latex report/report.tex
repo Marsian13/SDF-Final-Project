@@ -57,6 +57,7 @@ The arbitrary-precision arithmetic library uses lists to implement addition, sub
 \begin{enumerate}
     \item Compile the project using Ant: \texttt{ant compile}
     \item Create a JAR file: \texttt{ant jar}
+    \item To run some test cases: \texttt{ant test}
     \item Run the program with arguments:
     \begin{enumerate}
         \item[\textbf{a.}] \texttt{ant run} or just \texttt{ant} \\
@@ -71,7 +72,7 @@ The arbitrary-precision arithmetic library uses lists to implement addition, sub
             \item Build the Docker image: \\
             \texttt{docker build -t vansh132005/sdfproject .}
             \item Run the container with arguments: \\
-            \texttt{docker run vansh132005/sdfproject <type> <operation> <num1> <num2>}
+            \texttt{docker run vansh132005/sdfproject:latex <type> <operation> <num1> <num2>}
         \end{itemize}
     \end{enumerate}
     \item Example: \texttt{java -jar arbitraryarithmetic/aarithmetic.jar.jar float div 5.5 2}

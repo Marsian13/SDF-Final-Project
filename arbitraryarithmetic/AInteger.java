@@ -116,6 +116,7 @@ public class AInteger {
         AInteger result = new AInteger(); // Declare result at the beginning
 
         if (other.number_in_integer.size() == 1 && other.number_in_integer.get(0) == 0) {
+            System.out.println("Division by zero error");
             throw new ArithmeticException("Division by zero");
         }
         result.number_in_integer = divideNumbers(this.number_in_integer, other.number_in_integer);

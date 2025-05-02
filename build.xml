@@ -30,4 +30,10 @@
             </manifest>
         </jar>
     </target>
+
+    <target name="test" depends="compile">
+        <exec executable="python3">
+            <arg value="TEST CASES/test.py"/>
+        </exec>
+    </target>
 </project>

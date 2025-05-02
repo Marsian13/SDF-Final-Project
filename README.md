@@ -12,8 +12,14 @@ SDF PROJECT/
 │   └── aarithmetic.jar         # Compiled JAR file containing arithmetic classes
 |
 ├── Latex report/
+|   ├── report.pdf              # pdf of report
 |   ├── report.tex              # report of project
 |   └── uml.png                 # uml image made by plant uml
+|
+├── TEST CASES/
+|   ├── input.txt               # test cases given here
+|   ├── expected_ouput.tex      # expected ans of test cases are here
+|   └── test.py                 # script to run test cases
 |
 ├── MyInfArith.java             # Main driver program
 ├── build.xml                   # Apache Ant build script
@@ -29,7 +35,7 @@ SDF PROJECT/
 - **LaTeX**: For compiling the report (e.g., MiKTeX, TeX Live).
 - **Python**: For running `coderunner.py` (optional).
 
-- Open `report.pdf` to view the project documentation, including the UML class diagram.
+- Open `report.pdf` to view the project documentation and how to use this library, including the UML class diagram.
 
 ## Project Features
 
@@ -38,4 +44,3 @@ SDF PROJECT/
 - Floating-point division precision up to 1000 digits.
 - Command-line interface via `MyInfArith`.
 - Containerized using Docker for portability.
-
