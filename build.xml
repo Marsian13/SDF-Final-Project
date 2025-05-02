@@ -1,19 +1,23 @@
 <project name="MyInfArithProject" default="run" basedir=".">
 
+    <!-- telling ant which files to use/make -->
     <property name="src.dir" value="." />
     <property name="build.dir" value="compiled" />
     <property name="main.class" value="MyInfArith" />
 
+    <!-- target to clean the compiled files -->
     <target name="clean">
         <delete dir="${build.dir}" />
     </target>
 
+    <!-- target to compile -->
     <target name="compile" depends="clean">
         <mkdir dir="${build.dir}" />
         <javac srcdir="." destdir="${build.dir}" includeantruntime="false">
         </javac>
     </target>
 
+    <!-- target to run and give output of default input -->
     <target name="run" depends="compile">
         <java classname="${main.class}" fork="true" classpath="${build.dir}">
             <arg value="float" />
@@ -23,6 +27,7 @@
         </java>
     </target>
 
+    <!-- target to make jar file -->
     <target name="jar" depends="compile">
         <jar destfile="arbitraryarithmetic/aarithmetic.jar" basedir="${build.dir}">
             <manifest>
@@ -31,6 +36,7 @@
         </jar>
     </target>
 
+    <!-- target to test some cases -->
     <target name="test" depends="compile">
         <exec executable="python3">
             <arg value="TEST CASES/test.py"/>
