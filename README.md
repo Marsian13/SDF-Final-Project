@@ -4,6 +4,7 @@ This project is part of the Software Development Fundamentals (SDF) course (CS10
 
 ## Project Structure
 
+```plaintext
 SDF PROJECT/
 │
 ├── arbitraryarithmetic/
