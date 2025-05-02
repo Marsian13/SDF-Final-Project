@@ -299,6 +299,7 @@ public class AFloat {
         return new ArrayList<>(frac.subList(0, end));
     }
 
+    // function to check which number is smaller 
     private static boolean isSmaller(List<Integer> num1, List<Integer> num2) {
         num1 = stripLeadingZeros(num1);
         num2 = stripLeadingZeros(num2);

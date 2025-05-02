@@ -27,6 +27,7 @@ SDF PROJECT/
 ├── Dockerfile                  # Docker instructions for containerizing the project
 ├── coderunner.py               # Python helper script for testing/running code
 └── README.md                   # Project documentation (this file)
+```
 
 ## Prerequisites
 
